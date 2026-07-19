@@ -5,16 +5,15 @@ import SpatialHero from './SpatialHero';
 import SpatialDashboard from './SpatialDashboard';
 
 export default function App() {
-  // Master state tracking the active primary category
   const [activeTab, setActiveTab] = useState('simulations');
-  const [activeSubItem, setActiveSubItem] = useState('Anatomy Exploration');
+  const [activeSubItem, setActiveSubItem] = useState('Core Baseline');
 
   return (
     <SpatialLayout>
-      <div style={{ display: 'flex', width: '100%', gap: '48px', alignItems: 'flex-start' }}>
+      <div className="responsive-grid-row" style={{ display: 'flex', width: '100%', gap: '48px', alignItems: 'flex-start' }}>
         
-        {/* LEFT COLUMN: SIDEBAR CONTROLLER PASSING STATE UP */}
-        <div style={{ position: 'sticky', top: '24px' }}>
+        {/* LEFT COMPONENT COLUMN */}
+        <div className="responsive-grid-col" style={{ position: 'sticky', top: '24px', zIndex: 10 }}>
           <SpatialSidebar 
             activeTab={activeTab} 
             setActiveTab={setActiveTab}
@@ -23,13 +22,11 @@ export default function App() {
           />
         </div>
 
-        {/* RIGHT COLUMN: MAIN PANEL STACK */}
-        <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        {/* MAIN PANEL CONTENT VIEWPORTS */}
+        <div className="responsive-grid-col" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '48px', width: '100%' }}>
           
-          {/* THE HERO VIEWPORT: NOW RECONSTRUCTED TO RESPOND TO SIDEBAR STATE */}
-          <SpatialHero activeTab={activeTab} activeSubItem={activeSubItem} />
+          <SpatialHero activeTab={activeTab} />
 
-          {/* THE DATA DECK CAROUSEL */}
           <SpatialDashboard />
 
         </div>

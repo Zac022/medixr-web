@@ -19,10 +19,10 @@ export default function SpatialDashboard() {
   };
 
   return (
-    <div style={{ display: 'flex', width: '100%', gap: '28px', marginTop: '12px', alignItems: 'center' }}>
+    <div className="dashboard-grid-row" style={{ display: 'flex', width: '100%', gap: '28px', marginTop: '12px', alignItems: 'center' }}>
       
-      {/* LEFT COLUMN: CRITICAL METRIC MONITOR */}
-      <div style={{ ...glassStyle, flex: '1.1', height: '400px', padding: '26px', borderRadius: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'left' }}>
+      {/* GRID ITEM 1: CRITICAL DATA FEED */}
+      <div className="dashboard-grid-col" style={{ ...glassStyle, flex: '1.1', height: '400px', padding: '26px', borderRadius: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'left', boxSizing: 'border-box' }}>
         <div>
           <div style={{ fontSize: '11px', fontWeight: '800', color: '#3B72F2', letterSpacing: '0.06em' }}>DATA METRICS</div>
           <h4 style={{ fontSize: '20px', fontWeight: '800', color: '#001A40', margin: '10px 0 0 0', lineHeight: '1.3' }}>Biometric Sync Status</h4>
@@ -39,8 +39,8 @@ export default function SpatialDashboard() {
         </div>
       </div>
 
-      {/* CENTER COLUMN: HOVER-INTERACTIVE VISUAL CAROUSEL STAGE */}
-      <div style={{ flex: '2.1', height: '400px', borderRadius: '32px', backgroundColor: 'rgba(255, 255, 255, 0.35)', border: '1px solid rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(10px)', display: 'flex', justifyContent: 'center', alignItems: 'center', perspective: '1200px', overflow: 'hidden' }}>
+      {/* GRID ITEM 2: CENTER THREE-CARD CAROUSEL WORKSPACE */}
+      <div className="dashboard-grid-col" style={{ flex: '2.1', height: '400px', borderRadius: '32px', backgroundColor: 'rgba(255, 255, 255, 0.35)', border: '1px solid rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(10px)', display: 'flex', justifyContent: 'center', alignItems: 'center', perspective: '1200px', overflow: 'hidden', position: 'relative', boxSizing: 'border-box' }}>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', width: '100%', height: '100%', transformStyle: 'preserve-3d' }}>
           {totalModules.map((item, idx) => {
             const offset = idx - activeIndex;
@@ -56,7 +56,6 @@ export default function SpatialDashboard() {
             return (
               <div
                 key={item.id}
-                // SWAPS ACTIVE CARD INDEX ON HOVER SO BACKGROUND CARDS INSTANTLY POP FRONT
                 onMouseEnter={() => {
                   setHoveredIndex(idx);
                   setActiveIndex(idx);
@@ -85,8 +84,8 @@ export default function SpatialDashboard() {
         </div>
       </div>
 
-      {/* RIGHT COLUMN: LEAD AXIS TRACKER MINI-GLASS */}
-      <div style={{ ...glassStyle, flex: '1', height: '400px', padding: '22px 24px', borderRadius: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'left' }}>
+      {/* GRID ITEM 3: LEAD AXIS READOUT DECK */}
+      <div className="dashboard-grid-col" style={{ ...glassStyle, flex: '1', height: '400px', padding: '22px 24px', borderRadius: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'left', boxSizing: 'border-box' }}>
         <div>
           <span style={{ fontSize: '11px', fontWeight: '800', color: '#001A40', letterSpacing: '0.05em' }}>LIMB LEAD PLACEMENTS</span>
           <p style={{ margin: '4px 0 0 0', fontSize: '11px', color: '#475E7A' }}>Active coordinate vectors:</p>

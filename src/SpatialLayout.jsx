@@ -18,10 +18,21 @@ export default function SpatialLayout({ children }) {
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
       }}
     >
-      {/* HEADER BAR */}
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', height: '64px' }}>
-          <img src="/medixr_logo.png" alt="MediXR Logo" style={{ height: '64px', width: 'auto', objectFit: 'contain' }} />
+      {/* CLINICAL HEADER */}
+      <div className="spatial-header" style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <img 
+            src="/medixr_logo.png" 
+            alt="MediXR Logo" 
+            className="spatial-logo"
+            style={{ 
+              height: '64px',
+              width: 'auto',
+              objectFit: 'contain',
+              cursor: 'pointer',
+              filter: 'drop-shadow(0 4px 12px rgba(0, 33, 89, 0.08))'
+            }} 
+          />
         </div>
         <div>
           <button style={{ backgroundColor: '#3B72F2', border: 'none', color: '#ffffff', padding: '12px 24px', borderRadius: '99px', fontSize: '13px', fontWeight: '600', cursor: 'pointer' }}>
@@ -30,23 +41,26 @@ export default function SpatialLayout({ children }) {
         </div>
       </div>
 
-      {/* CORE WORKSPACE */}
+      {/* CORE WORKSPACE ENTRY */}
       <div style={{ width: '100%', maxWidth: '1440px' }}>
         {children}
       </div>
 
-      {/* MOBILE RESPONSIVE INJECTIONS */}
+      {/* FIXED RESPONSIVE MEDIA OVERRIDES */}
       <style dangerouslySetInnerHTML={{__html: `
-        @media (max-width: 768px) {
-          .spatial-layout-wrapper { padding: 20px !important; }
-          /* Targets App.jsx structural grid layout split */
-          .spatial-layout-wrapper > div + div { flex-direction: column !important; gap: 32px !important; }
-          /* Targets Hero horizontal columns split */
-          .spatial-layout-wrapper div[style*="gap: 64px"] { flex-direction: column !important; gap: 32px !important; }
-          /* Targets Dashboard horizontal cards split */
-          .spatial-layout-wrapper div[style*="gap: 28px"] { flex-direction: column !important; gap: 20px !important; }
-          /* Forces titles to look crisp on smaller mobile screens */
-          h1 { font-size: 34px !important; }
+        @media (max-width: 900px) {
+          .spatial-layout-wrapper { padding: 24px 16px !important; }
+          .spatial-header { margin-bottom: 24px !important; }
+          .spatial-logo { height: 44px !important; }
+          
+          /* Target specific grid blocks cleanly without bleeding into child layouts */
+          .responsive-grid-row { flex-direction: column !important; gap: 32px !important; }
+          .dashboard-grid-row { flex-direction: column !important; gap: 24px !important; }
+          
+          .responsive-grid-col { width: 100% !important; flex: none !important; }
+          .dashboard-grid-col { width: 100% !important; height: auto !important; flex: none !important; }
+          
+          h1 { font-size: 36px !important; }
         }
       `}} />
     </div>
