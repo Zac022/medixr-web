@@ -39,7 +39,7 @@ export default function SpatialDashboard() {
         </div>
       </div>
 
-      {/* CENTER COLUMN: CLEAN VISUAL CAROUSEL STAGE */}
+      {/* CENTER COLUMN: HOVER-INTERACTIVE VISUAL CAROUSEL STAGE */}
       <div style={{ flex: '2.1', height: '400px', borderRadius: '32px', backgroundColor: 'rgba(255, 255, 255, 0.35)', border: '1px solid rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(10px)', display: 'flex', justifyContent: 'center', alignItems: 'center', perspective: '1200px', overflow: 'hidden' }}>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', width: '100%', height: '100%', transformStyle: 'preserve-3d' }}>
           {totalModules.map((item, idx) => {
@@ -56,7 +56,12 @@ export default function SpatialDashboard() {
             return (
               <div
                 key={item.id}
-                onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)} onClick={() => setActiveIndex(idx)}
+                // SWAPS ACTIVE CARD INDEX ON HOVER SO BACKGROUND CARDS INSTANTLY POP FRONT
+                onMouseEnter={() => {
+                  setHoveredIndex(idx);
+                  setActiveIndex(idx);
+                }} 
+                onMouseLeave={() => setHoveredIndex(null)}
                 style={{
                   position: 'absolute', width: isCenter ? '255px' : '220px', height: isCenter ? '330px' : '290px', padding: '24px', borderRadius: '28px', cursor: 'pointer', textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
                   backgroundColor: isCenter ? '#002159' : 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(40px)',
